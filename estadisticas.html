@@ -100,12 +100,6 @@
       <div><img src="" alt=""></div>
     </div>
     <div class="ranking">
-      <div>1° > Anonimo1: $15000</div>
-      <div>2° > Anonimo2: $13000</div>
-      <div>3° > Anonimo3: $13000</div>
-      <div>4° > Anonimo4: $12000</div>
-      <div>5° > Anonimo5: $5000</div>
-      <div>6° > Anonimo6: $3000</div>
     </div>
     <div class="resumen">
       <div>Avance: 0/3</div>
@@ -113,5 +107,35 @@
       <div>Dinero: $0</div>
     </div>
   </div>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwTvs1FTeMVeRvW-Dww6sa94kmEcLW3AA",
+      authDomain: "hacksql-c7603.firebaseapp.com",
+      projectId: "hacksql-c7603",
+      storageBucket: "hacksql-c7603.appspot.com",
+      messagingSenderId: "942938326630",
+      appId: "1:942938326630:web:7a0fba12f43bed74938fa7",
+      measurementId: "G-TLDMTEC1TE"
+    };
+    const ranking = document.querySelector('.ranking');
+    console.log(ranking)
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const querySnapshot = await getDocs(collection(db, "scores"));
+    let pos = 1;
+    querySnapshot.forEach((doc) => {
+
+      let divElement = document.createElement('div');
+      divElement.innerText = `${pos}° > ${doc._document.data.value.mapValue.fields.player.stringValue}: $${doc._document.data.value.mapValue.fields.score.integerValue}`;
+      ranking.appendChild(divElement);
+      pos++;
+    });
+    </script>
 </body>
 </html>

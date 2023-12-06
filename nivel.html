@@ -143,11 +143,14 @@
       min-width: 70px;
     }
   </style>
-  <script src="./main.js" defer></script>
+      <script src="./main.js" defer></script>
+  <script src="./app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
   <div class="options">
-    <div id="puntuacion">$0</div>
+    <div id="puntuacion">$ 0</div>
     <a href="./estadisticas.html" ><img src="./img/settings.png" alt=""></a>
     <a href="./index.html" ><img src="./img/power-off.png" alt=""></a>
   </div>
@@ -167,5 +170,48 @@
       </div>
     </div>
   </div>
+  <button id="terminar">
+    Terminar
+  </button>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAwTvs1FTeMVeRvW-Dww6sa94kmEcLW3AA",
+      authDomain: "hacksql-c7603.firebaseapp.com",
+      projectId: "hacksql-c7603",
+      storageBucket: "hacksql-c7603.appspot.com",
+      messagingSenderId: "942938326630",
+      appId: "1:942938326630:web:7a0fba12f43bed74938fa7",
+      measurementId: "G-TLDMTEC1TE"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const querySnapshot = await getDocs(collection(db, "scores"));
+    querySnapshot.forEach((doc) => {
+      // console.log(doc._document.data.value.mapValue.fields.player.stringValue);
+      // console.log(doc._document.data.value.mapValue.fields.score.integerValue);
+    });
+    const guardar = document.getElementById('terminar');
+    guardar.addEventListener('click', () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const playerName = urlParams.get('player');
+      const playerScore = document.getElementById('puntuacion').innerText.substring(2);
+      try {
+        const docRef = addDoc(collection(db, "scores"), {
+          player: playerName,
+          score: 5000,
+        });
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    });
+    </script>
 </body>
 </html>

@@ -97,11 +97,11 @@ function cargarPregunta(preguntas){
           cargarOpciones(pregunta);
           oportunidades--;
           if (oportunidades<0){
-            msg.innerText = pregunta.ayudas[numeroAyuda]
-            numeroAyuda++;
-            if(numeroAyuda >= pregunta.ayudas.length){
-              numeroAyuda =0;
-            }
+            msg.innerText = pregunta.respuesta
+            // numeroAyuda++;
+            // if(numeroAyuda >= pregunta.ayudas.length){
+            //   numeroAyuda = 0;
+            // }
           }
         }
         
