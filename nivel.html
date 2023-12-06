@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hack w SQL</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="/img/eye.png">
+  <style>
+    body{
+      background-color: #222;
+    }
+    .container-nivel {
+      margin-inline: center;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 80px);
+      gap: 10px;
+      padding: 30px;
+      padding-top: 0;
+    }
+    .modelo{
+      background-color: black;
+      height: 100%;
+      color: white;
+      grid-column-start: 1;
+      grid-row-start: 1;
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      & img{
+        width: 100%;
+      }
+    }
+    .chat{
+      background-color: black;
+      height: 100%;
+      grid-row-start: 1;
+      grid-row-end: 3;
+      color: white;
+      padding: 20px;
+      display:  flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      & div{
+        width: 100%;
+
+        padding: 10px;
+        /* min-height: 60px; */
+        /* background-color: #333; */
+        left: 0;
+        /* padding-left: 50px;; */
+
+      }
+      & div::before{
+        content: '> ';
+      }
+    }
+    .query{
+      background-color: black;
+      height: 100%;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      & .block-options{
+        display: flex;
+        flex-wrap: wrap;
+        gap:10px;
+        & div{
+          border: solid 1px white;
+          padding: 5px 10px;
+          border-radius: 2px;
+          cursor: pointer;
+        }
+        & div:hover{
+          text-decoration: underline;
+        }
+      }
+      & .respuesta{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        max-width: calc(100% - 190px);
+        margin-top: 10px;
+        &::before{
+          content: '> '
+        }
+      } 
+      & .btns{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+        display: flex;
+        gap: 10px;
+      }    
+    }
+
+    .btn-aceptar{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: green;
+      outline: solid 1px green;
+      padding: 5px 10px;
+      width: 130px;
+      color: black;
+      cursor: pointer;
+    }
+    .btn-aceptar:hover{
+      color: white;
+      text-decoration: underline;
+    }
+    .btn-limpiar{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 50px;
+      outline: 1px solid #7c0a20;
+      padding: 5px 10px;
+      color: #7c0a20;
+      cursor: pointer;
+      & img{
+        height: 25px;
+        object-fit: cover;
+      }
+    }
+    .btn-limpiar:hover{
+      background-color: #7c0a20;
+      color: black;
+      
+      /* border-radius: 2px; */
+    }
+    #puntuacion{
+      font-size: 16px;
+      min-width: 70px;
+    }
+  </style>
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <div class="options">
+    <div id="puntuacion">$0</div>
+    <a href="./estadisticas.html" ><img src="./img/settings.png" alt=""></a>
+    <a href="./index.html" ><img src="./img/power-off.png" alt=""></a>
+  </div>
+  <div class="container-nivel">
+    <div class="modelo">
+      <img src="./img/image.png" alt="" srcset="">
+    </div>
+
+    <div class="chat"></div>
+
+    <div class="query">
+      <div class="block-options"></div>
+      <div class="respuesta"></div>
+      <div class="btns">
+        <div class="btn-limpiar"><img src="./img/delete.png" alt=""></div>
+        <div class="btn-aceptar">ACEPTAR</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+[
+  {
+    "id": 0,
+    "nivel": 1,
+    "pregunta": 1,
+    "enunciado": "Necesito un listado con las denuncias hechas desde 01 de Enero de 1984 hasta 30 de Enero de 1984...recompensa",
+    "respuesta": "SELECT denuncia FROM denuncias WHERE fecha >= '1984-01-01' AND fecha <= '1984-01-30'",
+    "opciones": [
+      "SELECT",
+      "WHERE",
+      "denuncia",
+      "fecha",
+      "fecha",
+      ">=",
+      "<=",
+      "'1984-01-01'",
+      "'1984-01-30'",
+      "denuncias",
+      "AND",
+      "*",
+      "JOIN",
+      "LEFT",
+      "FROM"
+    ],
+    "recompensa": 5000,
+    "castigo": 1000,
+    "ayudas": [
+      "Ayuda 1",
+      "Ayuda 2",
+      "Ayuda 3"
+    ],
+    "cantOportunidades": 3,
+    "respuestaCorrecta": "Muchas gracias tu pago es de",
+    "respuestaIncorrecta": "Mis otras fuentes me dicen otra cosa... tu pago se reduce en"
+  },
+  {
+    "id": 1,
+    "nivel": 1,
+    "pregunta": 2,
+    "enunciado": "¿Quién denunció a Winston?...recompensa",
+    "respuesta": "SELECT denuncia FROM denuncias WHERE fecha >= '1984-01-30' AND fecha <= '1984-01-30'",
+    "opciones": [
+      "SELECT",
+      "SELECT",
+      "WHERE",
+      "denuncia",
+      "fecha",
+      "fecha",
+      ">=",
+      "<=",
+      "'1984-01-01'",
+      "'1984-01-30'",
+      "denuncias",
+      "AND",
+      "*",
+      "JOIN",
+      "LEFT",
+      "FROM"
+    ],
+    "recompensa": 5000,
+    "castigo": 1000,
+    "ayudas": [
+      "Ayuda 1",
+      "Ayuda 2",
+      "Ayuda 3"
+    ],
+    "cantOportunidades": 3,
+    "respuestaCorrecta": "`Muchas gracias tu pago es de",
+    "respuestaIncorrecta": "Mis otras fuentes me dicen otra cosa... tu pago se reduce"
+  }
+]

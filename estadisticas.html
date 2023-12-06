@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ranking</title>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    body{
+      padding: 1rem;
+    }
+    .container-nivel {
+      margin-inline: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 80px);
+      gap: 10px;
+      padding: 30px;
+
+      & .medallas{
+        grid-column-start: 1;
+        grid-row-start: 1;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 20px;
+        width: 316px;
+        &>div{
+          /* border: solid 1px white; */
+          background-color: #333;
+          width: 64px;
+          height: 64px;
+          & img{
+            width: inherit;
+            height: inherit;
+            object-fit: cover;
+          }
+        }
+        &>div.active{
+          background-color: transparent;
+        }
+      }
+      & .ranking{
+        border: solid 1px white;
+        height: 100%;
+        min-width: 400px;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        /* align-items: center; */
+        padding: 1rem;
+        /* justify-content: center; */
+        /* display: grid; */
+        & div{
+          padding: 10px;
+          border-bottom: 1px solid #555;
+        }
+      }
+      & .resumen{
+        /* outline: solid 1px red; */
+        /* width: 100%;; */
+        display: flex;
+        flex-direction: column;
+        gap:5px;
+        height: 100%;
+        color: white;
+        /* display: grid; */
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="options">
+    <div id="puntuacion">$0</div>
+    <a href="./nivel.html" ><img src="./img/command-line.png" alt=""></a>
+    <a href="./index.html" ><img src="./img/power-off.png" alt=""></a>
+  </div>
+  <div class="container-nivel">
+    <div class="medallas">
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div class="active"><img src="./img/eyeWhite.png" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+      <div><img src="" alt=""></div>
+    </div>
+    <div class="ranking">
+      <div>1° > Anonimo1: $15000</div>
+      <div>2° > Anonimo2: $13000</div>
+      <div>3° > Anonimo3: $13000</div>
+      <div>4° > Anonimo4: $12000</div>
+      <div>5° > Anonimo5: $5000</div>
+      <div>6° > Anonimo6: $3000</div>
+    </div>
+    <div class="resumen">
+      <div>Avance: 0/3</div>
+      <div>Medallas: 0/16</div>
+      <div>Dinero: $0</div>
+    </div>
+  </div>
+</body>
+</html>
