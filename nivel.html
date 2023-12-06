@@ -8,7 +8,7 @@
   <link rel="icon" type="image/x-icon" href="/img/eye.png">
   <style>
     body{
-      background-color: #222;
+      /* background-color: #222; */
     }
     .container-nivel {
       margin-inline: center;
@@ -23,6 +23,7 @@
     }
     .modelo{
       background-color: black;
+      border: 1px solid white;
       height: 100%;
       color: white;
       grid-column-start: 1;
@@ -37,6 +38,7 @@
     }
     .chat{
       background-color: black;
+      border: 1px solid white;
       height: 100%;
       grid-row-start: 1;
       grid-row-end: 3;
@@ -48,8 +50,8 @@
       overflow-y: auto;
       & div{
         width: 100%;
-
-        padding: 10px;
+        /* outline: 1px solid red; */
+        padding: 5px;
         /* min-height: 60px; */
         /* background-color: #333; */
         left: 0;
@@ -62,6 +64,7 @@
     }
     .query{
       background-color: black;
+      border: 1px solid white;
       height: 100%;
       color: white;
       padding: 20px;
@@ -144,7 +147,7 @@
     }
   </style>
       <script src="./main.js" defer></script>
-  <script src="./app.js" defer></script>
+  <!-- <script src="./app.js" defer></script> -->
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 </head>
@@ -194,9 +197,9 @@
     const db = getFirestore(app);
     const querySnapshot = await getDocs(collection(db, "scores"));
     querySnapshot.forEach((doc) => {
-      // console.log(doc._document.data.value.mapValue.fields.player.stringValue);
-      // console.log(doc._document.data.value.mapValue.fields.score.integerValue);
     });
+
+    let user = JSON.parse(sessionStorage.getItem("user"))
     const guardar = document.getElementById('terminar');
     guardar.addEventListener('click', () => {
       const queryString = window.location.search;

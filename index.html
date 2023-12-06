@@ -82,8 +82,25 @@
   <script>
     aceptar = document.querySelector('button');
     aceptar.addEventListener('click', () => {
-      const user = document.getElementById('name').value;
-      window.location.href = `nivel.html?player=${user}`
+      const userName = document.getElementById('name').value;
+      const answers = [{'lvl': 0, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 1, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 2, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 3, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 4, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 5, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 6, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 7, 'sec': 0, 'attemps': 0, 'correct': false},
+      {'lvl': 8, 'sec': 0, 'attemps': 0, 'correct': false}
+    ]
+    if(userName != ''){
+      const user = {'name': userName, 'score': 0, 'answers': answers};
+        sessionStorage.setItem('user', JSON.stringify(user)); 
+        window.location.href = `nivel.html`;
+      }
+    else{
+      alert('Ingresa tu nombre');
+    }
     });
   </script>
 </body>

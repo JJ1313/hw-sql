@@ -22,6 +22,12 @@ async function main(){
     location.reload();
   }
   const preguntas = await response.json();
+  let user = JSON.parse(sessionStorage.getItem('user'));
+  if(!user){
+    alert('Debes haber puesto tu nombre en el inicio... No necesariamente el tuyo, es solo para guardar los datos');
+    window.location.href = `index.html`;
+  }
+  console.log(preguntas);
   cargarPregunta(preguntas);
 }
 function cargarOpciones(pregunta){
