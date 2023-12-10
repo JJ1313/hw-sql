@@ -10,7 +10,7 @@ let nivelActual = 1;
 let preguntaActual = 1;
 
 let puntuacion = 0;
-
+let answers;
 const preguntasPorNivel = 3;
 const cantidadNiveles = 3;
 
@@ -23,11 +23,11 @@ async function main(){
   }
   const preguntas = await response.json();
   let user = JSON.parse(sessionStorage.getItem('user'));
+  answers = user.answers;
   if(!user){
     alert('Debes haber puesto tu nombre en el inicio... No necesariamente el tuyo, es solo para guardar los datos');
     window.location.href = `index.html`;
   }
-  console.log(preguntas);
   cargarPregunta(preguntas);
 }
 function cargarOpciones(pregunta){
@@ -59,30 +59,42 @@ function cargarPregunta(preguntas){
       let recompensaFinal = pregunta.recompensa;
       let oportunidades = pregunta.cantOportunidades;
       let numeroAyuda = 0;
-
+      let t0 = Date.now();
+      let tf = 0;
+      let correct = false;
       const q = document.createElement('div')
       q.innerText = `${pregunta.enunciado} $${recompensaFinal}`;
       chatBox.appendChild(q);
 
-     cargarOpciones(pregunta);
+      cargarOpciones(pregunta);
 
       // === Revisar si la respuesta es correcta ===
       btnAceptar.addEventListener('click', ()=>{
         const respuesta = document.querySelector('.respuesta').innerText.replace(/\n/g, ' ');
-
         const msg = document.createElement('div');
+        let index = 3*nivelActual + preguntaActual - 4;
+        let tiempo = 0;
         if(respuesta == pregunta.respuesta){
+          tf = Date.now();
+          tiempo = (tf - t0)/ 1000;
+          answers[index].sec = tiempo;
+          answers[index].correct = true;
+          console.log(answers);
+
           msg.innerText = `${pregunta.respuestaCorrecta} ${recompensaFinal}`;
           msg.style.outline = 'solid 2px #265828';
           document.querySelector('.respuesta').innerHTML = '';
           containerOpciones.innerHTML = '';
           preguntaActual += 1;
+          
           if(preguntaActual > preguntasPorNivel){
             preguntaActual = 1;
             nivelActual += 1;
             chatBox.innerHTML = '';
           }
           if(nivelActual > cantidadNiveles){
+            const dialog = document.querySelector('dialog');
+            dialog.showModal();
             console.log('FINAL JUEGO')
           }
           puntuacion += recompensaFinal;
@@ -103,6 +115,9 @@ function cargarPregunta(preguntas){
           cargarOpciones(pregunta);
           oportunidades--;
           if (oportunidades<0){
+            tf = Date.now();
+            tiempo = tf - t0;
+            correct = false;
             msg.innerText = pregunta.respuesta
             // numeroAyuda++;
             // if(numeroAyuda >= pregunta.ayudas.length){
