@@ -145,9 +145,35 @@
       font-size: 16px;
       min-width: 70px;
     }
+    dialog{
+      margin-inline: auto;
+      padding: 5rem;
+      background-color: black;
+      color: white;
+      outline: 2px solid white;
+      display: grid;
+      backdrop-filter: blur(1px);
+    }
+    dialog::backdrop {
+      background-color: red;
+
+      /* backdrop-filter: blur(20px); */
+    }
+    #terminar{
+      width: 10rem;
+      height: 2rem;
+      margin-inline: auto;
+      margin-top: 2rem;
+      cursor: pointer;
+    }
+    #terminar:hover{
+      background-color: black;
+      color: white;
+      outline: 1px solid white;
+      text-decoration: underline;
+    }
   </style>
       <script src="./main.js" defer></script>
-  <!-- <script src="./app.js" defer></script> -->
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 </head>
@@ -173,7 +199,7 @@
       </div>
     </div>
   </div>
-  <dialog>
+  <dialog id="dialog-final">
     <p>Felicidades... terminaste el juego</p>
     <button id="terminar">
       TERMINAR
@@ -202,31 +228,31 @@
     querySnapshot.forEach((doc) => {
     });
 
-    let user = JSON.parse(sessionStorage.getItem("user"))
     const guardar = document.getElementById('terminar');
     guardar.addEventListener('click', () => {
-      const user = JSON.parse(sessionStorage.getItem(user));
+      const user = JSON.parse(sessionStorage.getItem("user"))
       const answers = user.answers;
       const playerScore = document.getElementById('puntuacion').innerText.substring(2);
       try {
         const docRef = addDoc(collection(db, "scores"), {
           player: user.name,
           score: playerScore,
-          11: answers[0].sec,
-          12: answers[1].sec,
-          13: answers[2].sec,
-          21: answers[3].sec,
-          22: answers[4].sec,
-          23: answers[5].sec,
-          31: answers[6].sec,
-          32: answers[7].sec,
-          33: answers[8].sec
+          p11: answers[0],
+          p12: answers[1],
+          p13: answers[2],
+          p21: answers[3],
+          p22: answers[4],
+          p23: answers[5],
+          p31: answers[6],
+          p32: answers[7],
+          p33: answers[8]
         });
+        sessionStorage.clear;
+        // window.location.href = 'index.html'
       } catch (e) {
         console.error("Error adding document: ", e);
       }
-      sessionStorage.clear;
-      window.location.href = 'index.html'
+      document.querySelector('dialog').close();
     });
     </script>
 </body>

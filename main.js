@@ -23,11 +23,12 @@ async function main(){
   }
   const preguntas = await response.json();
   let user = JSON.parse(sessionStorage.getItem('user'));
-  answers = user.answers;
+  
   if(!user){
     alert('Debes haber puesto tu nombre en el inicio... No necesariamente el tuyo, es solo para guardar los datos');
     window.location.href = `index.html`;
   }
+  answers = user.answers;
   cargarPregunta(preguntas);
 }
 function cargarOpciones(pregunta){
@@ -75,12 +76,16 @@ function cargarPregunta(preguntas){
         let index = 3*nivelActual + preguntaActual - 4;
         let tiempo = 0;
         if(respuesta == pregunta.respuesta){
+          
           tf = Date.now();
           tiempo = (tf - t0)/ 1000;
           answers[index].sec = tiempo;
           answers[index].correct = true;
+          if(oportunidades < 0){
+            answers[index].correct = false;
+          }
+          answers[index].attemps = pregunta.cantOportunidades - oportunidades;
           console.log(answers);
-
           msg.innerText = `${pregunta.respuestaCorrecta} ${recompensaFinal}`;
           msg.style.outline = 'solid 2px #265828';
           document.querySelector('.respuesta').innerHTML = '';
