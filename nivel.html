@@ -145,21 +145,17 @@
       font-size: 16px;
       min-width: 70px;
     }
-    dialog{
+    #dialog-final{
       margin-inline: auto;
       padding: 5rem;
       background-color: black;
       color: white;
       outline: 2px solid white;
-      display: grid;
+      /* display: grid; */
       backdrop-filter: blur(1px);
     }
-    dialog::backdrop {
-      background-color: red;
-
-      /* backdrop-filter: blur(20px); */
-    }
     #terminar{
+      display: block;
       width: 10rem;
       height: 2rem;
       margin-inline: auto;
@@ -172,6 +168,28 @@
       outline: 1px solid white;
       text-decoration: underline;
     }
+    #dialog-salir{
+      margin-inline: auto;
+      padding:  5rem;
+      background-color: black;
+      color: white;
+      outline: 2px solid white;
+      & button{
+        display: block;
+        width: 10rem;
+        height: 2rem;
+        margin-inline: auto;
+        margin-top: 2rem;
+        cursor: pointer;
+      }
+      & button:hover{
+        background-color: black;
+        color: white;
+        outline: 1px solid white;
+        text-decoration: underline;
+      }
+    }
+
   </style>
       <script src="./main.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
@@ -202,7 +220,13 @@
   <dialog id="dialog-final">
     <p>Felicidades... terminaste el juego</p>
     <button id="terminar">
-      TERMINAR
+      Guardar
+    </button>
+  </dialog>
+  <dialog id="dialog-salir">
+    <p>Respuestas guardadas...</p>
+    <button id="salir">
+      Salir
     </button>
   </dialog>
   <script type="module">
@@ -247,12 +271,17 @@
           p32: answers[7],
           p33: answers[8]
         });
-        sessionStorage.clear;
+        document.querySelector('dialog').close();
+        document.querySelector('#dialog-final').close();
+        document.querySelector('#dialog-salir').showModal();
         // window.location.href = 'index.html'
       } catch (e) {
         console.error("Error adding document: ", e);
       }
-      document.querySelector('dialog').close();
+    });
+    document.querySelector('#salir').addEventListener('click', ()=>{
+      window.location.href = 'index.html';
+      sessionStorage.clear;
     });
     </script>
 </body>
