@@ -286,7 +286,7 @@
     "opciones": [
       "SELECT",
       "ciudadanos JOIN",
-      "ciudadanos.nombre",
+      "ciudadanos.nombre, experimentos.resultado",
       "experimentos",
       "ON",
       "denuncias.fecha >= '1984-01-01'",
@@ -300,9 +300,7 @@
       "WHERE",
       "ciudadanos.id_ciudadano = denuncias.id_denunciado",
       "OR",
-      "trabajadores",
-      ", ",
-      "experimentos.resultado"
+      "trabajadores"
     ],
     "recompensa": 5000,
     "castigo": 1000,

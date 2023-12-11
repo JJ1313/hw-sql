@@ -85,7 +85,6 @@ function cargarPregunta(preguntas){
             answers[index].correct = false;
           }
           answers[index].attemps = pregunta.cantOportunidades - oportunidades;
-          console.log(answers);
           msg.innerText = `${pregunta.respuestaCorrecta} ${recompensaFinal}`;
           msg.style.outline = 'solid 2px #265828';
           document.querySelector('.respuesta').innerHTML = '';
@@ -99,6 +98,9 @@ function cargarPregunta(preguntas){
           }
           if(nivelActual > cantidadNiveles){
             const dialog = document.querySelector('dialog');
+            const session = JSON.parse(sessionStorage.getItem('user'));
+            const user = {'name': session.name, 'score': 0, 'answers': answers};
+            sessionStorage.setItem('user', JSON.stringify(user));
             dialog.showModal();
             console.log('FINAL JUEGO')
           }
